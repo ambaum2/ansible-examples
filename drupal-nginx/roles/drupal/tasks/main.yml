@@ -1,7 +1,4 @@
 ---
-- name: alert without a variable
-  shell: echo {{ drupal_code_download_url }}
-
 - name: Download Drupal from pantheon download url
   command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
 
@@ -12,6 +9,9 @@
   shell: find . -type d -name "aaomembers*" -print | head -n 1
   register: drupal_folder
 
+- name: output drupal extract folder
+  shell: echo {{ drupal_folder }}
+  
 - name: create drupal directory
   shell: mkdir /srv/drupal
 
