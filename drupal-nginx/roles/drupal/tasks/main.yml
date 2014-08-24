@@ -3,7 +3,8 @@
   shell: echo {{ drupal_code_download_url }}
 
 - name: Download Drupal from pantheon download url
-  get_url: url="{{ drupal_code_download_url }}" dest=/srv/drupal.tar.gz
+  get_url: url={{ drupal_code_download_url }} dest=/srv/drupal.tar.gz url_username={{ drupal_code_username }} 
+  url_password={{ drupal_code_password }}
 
 - name: Extract archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
