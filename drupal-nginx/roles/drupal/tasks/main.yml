@@ -7,3 +7,13 @@
 
 - name: Extract archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
+  
+- name: get first aaomembers folder name
+  shell: find . -type d -name "aaomembers*" -print | head -n 1
+  register: drupal_folder
+
+- name: create drupal directory
+  shell: mkdir /srv/drupal
+
+- name: move drupal files from extracted directory drupal_folder to drupal directory
+  shell: mv /srv/{{ drupal_folder }}/* .* /srv/drupal/
