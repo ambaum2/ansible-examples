@@ -1,6 +1,6 @@
 ---
-#- name: Download Drupal from pantheon download url
-#  command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
+- name: Download Drupal from pantheon download url
+  command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
 
 - name: Extract archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
