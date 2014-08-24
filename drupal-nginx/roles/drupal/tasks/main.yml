@@ -6,7 +6,7 @@
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
   
 - name: get first aaomembers folder name
-  shell: find . -type d -name "aaomembers*" | tail -1 | awk '{ print $0 }'
+  shell: find . -type d -name 'aaomembers*' | tail -1 | awk '{ print $0 }'
   register: drupal_folder
 
 - name: output drupal extract folder
