@@ -1,16 +1,17 @@
 ---
-- name: Download Drupal from pantheon download url
-  command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
+#- name: Download Drupal from pantheon download url
+#  command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
 
 - name: Extract archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
+  register: drupal_extract_folder
   
 - name: get first aaomembers folder name
-  shell: find . -type d -name 'aaomembers*' | tail -1 | awk '{ print $0 }'
+  shell: find . -type d -name 'aaomembers*' | tail -1 | /bin/echo $0
   register: drupal_folder
 
 - name: store first aaomembers folder name in variable
-  shell: echo {{ drupal_folder.stdout }}
+  shell: echo awk 'match({{ drupal_extract_folder.stdout }},"h"){print substr({{ drupal_extract_folder.stdout }},RSTART-3,3),substr({{ drupal_extract_folder.stdout }},RSTART+1,4)}'
   
 - name: create drupal directory
   shell: mkdir /srv/drupal
