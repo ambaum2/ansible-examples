@@ -11,7 +11,7 @@
   register: drupal_folder
 
 - name: store first aaomembers folder name in variable
-  shell: f | tail -1 | awk '{ print $6 }'
+  shell: df | tail -1 | awk '{ print $6 }'
   register: my_new_var
 
 - name: echo my_new var
