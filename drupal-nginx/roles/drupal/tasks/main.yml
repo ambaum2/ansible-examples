@@ -1,5 +1,9 @@
 ---
+- name: alert without a variable
+  shell: echo {{ drupal_code_download_url }}
+
 - name: Download Drupal from pantheon download url
-get_url: url="{{ drupal_code_download_url }}" dest=/srv/drupal.tar.gz 
+  get_url: url="{{ drupal_code_download_url }}" dest=/srv/drupal.tar.gz
+
 - name: Extract archive
-command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
+  command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
