@@ -23,8 +23,9 @@
 - name: Create drupal database user
   mysql_user: name={{ d7_db_user }} password={{ d7_db_password }} priv={{ d7_db_name }}.*:ALL host='localhost' state=present
   
+#lcl.settings.php is a pantheon thing since we are downloading from pantheon
 - name: Copy drupal config file
-  template: src=settings.php.y2 dest=/srv/drupal/sites/default/
+  template: src=settings.php.y2 dest=/srv/drupal/sites/default/lcl.settings.php
   
 - name: Change ownership of drupal installation
   file: path=/srv/drupal/ owner=drupal group=drupal state=directory recurse=yes
