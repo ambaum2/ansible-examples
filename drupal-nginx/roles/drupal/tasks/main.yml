@@ -21,7 +21,7 @@
   shell: find . -name 'aaomembers*' | tail -1 | awk '{ print $1 }'
 
 - name: output name test 3
-  shell: > find . -name 'aaomembers*' | tail -1 | awk '{ print $1 }'
+  shell: find . -name 'aaomembers*' -exec sh -c "cat {} > {}.stdout" \;
 
 - name: echo my_new var
   shell: echo {{ my_new_var }}
