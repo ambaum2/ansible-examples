@@ -1,36 +1,12 @@
 ---
+- name: remove old drupal directories
+  shell: rm -rf drupal; rm -rf aaomembers*;
+
 - name: Download Drupal from pantheon download url
   command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
 
 - name: Extract archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
-  register: drupal_extract_folder
   
-- name: get first aaomembers folder name
-  shell: grep 'aaomembers*' . | tail -1 | awk '{ print $0 }'
-  register: drupal_folder
-
-- name: store first aaomembers folder name in variable
-  shell: df | tail -1 | awk '{ print $6 }'
-  register: my_new_var
-
-- name: output name test 1
-  shell: find . -name 'aaomembers*' | tail -1 | awk '{ print $0 }'
-
-- name: output name test 2
-  shell: find . -name 'aaomembers*' | tail -1 | awk '{ print $1 }'
-
-- name: output name test 3
-  shell: find . -name 'aaomembers*' -exec sh -c "cat {} > {}.stdout" \;
-  
-- name: output name test 4
-  shell: ls | grep "aaomembers*"
-
-- name: echo my_new var
-  shell: echo {{ my_new_var }}
-  
-- name: create drupal directory
-  shell: mkdir /srv/drupal
-
-#- name: move drupal files from extracted directory drupal_folder to drupal directory
-#  shell: mv /srv/$drupalfolder/* .* /srv/drupal/
+- name: rename aaomembers extracted folder to drupal
+  shell: find . -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} drupal  \; | head -1
