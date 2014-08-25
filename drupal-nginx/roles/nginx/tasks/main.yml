@@ -2,14 +2,7 @@
 - name: Install nginx
   yum: name=nginx state=present
 
-- name: say hostname debug
-  shell: echo {{ server_hostname }}
-  
-- name: alert without a variable
-  shell: echo "hello alan"
-
-- debug: msg="alan debug message"
-
-- name: Copy nginx configuration for wordpress
+#this needs improvement and is only for centOS
+- name: Copy nginx configuration for drupal
   template: src=default.conf dest=/etc/nginx/conf.d/default.conf
   notify: restart nginx
