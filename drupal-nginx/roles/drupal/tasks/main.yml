@@ -20,6 +20,9 @@
 - name: output name test 2
   shell: find . -name 'aaomembers*' | tail -1 | awk '{ print $1 }'
 
+- name: output name test 3
+  shell: > find . -name 'aaomembers*' | tail -1 | awk '{ print $1 }'
+
 - name: echo my_new var
   shell: echo {{ my_new_var }}
   
