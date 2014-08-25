@@ -9,7 +9,7 @@
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz #creates=/srv/drupal
   
 - name: rename aaomembers extracted folder to drupal
-  shell: find /srv/ -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} drupal  \; | head -1
+  shell: find /srv/ -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} /srv/drupal/  \; | head -1
 
 - name: Add group "drupal"
   group: name=drupal
