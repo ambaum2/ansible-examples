@@ -24,7 +24,7 @@
   mysql_user: name={{ d7_db_user }} password={{ d7_db_password }} priv={{ d7_db_name }}.*:ALL host='localhost' state=present
   
 - name: Copy drupal config file
-  template: src=settings.php.j2 dest=/srv/drupal/sites/default/
+  template: src=settings.php.y2 dest=/srv/drupal/sites/default/
   
 - name: Change ownership of drupal installation
   file: path=/srv/drupal/ owner=drupal group=drupal state=directory recurse=yes
