@@ -1,0 +1,14 @@
+<?php
+
+$base_url = 'http://{{ server_hostname }} ';
+
+//D7 DB config
+$databases['default']['default'] = array(
+      'database' => '{{ d7_db_name }}',
+      'username' => '{{ d7_db_user }}',
+      'password' => '{{ d7_db_password }}',
+      'host' => 'localhost',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+);
