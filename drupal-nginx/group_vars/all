@@ -4,9 +4,9 @@ wp_version: 3.7
 wp_sha256sum: 94b8b7a7241ec0817defa1c35f738d777f01ac17a4e45ee325c0f1778504fd94
 
 # These are the Wordpress database settings
-wp_db_name: wordpress 
-wp_db_user: wordpress
-wp_db_password: secret
+d7_db_name: drupal 
+d7_db_user: drupal
+d7_db_password: hellodrupal@
 
 # You shouldn't need to change this.
 mysql_port: 3306
