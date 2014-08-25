@@ -15,7 +15,7 @@
   shell: find /srv/ -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} /srv/drupal/  \; | head -1
   
 - name: Extract database archive
-  command: chdir=/srv/ /bin/gunzip drupal_db.sql.gz #creates=/srv/drupal
+  command: chdir=/srv/ /bin/gzip -d drupal_db.sql.gz #creates=/srv/drupal
 
 - name: Add group "drupal"
   group: name=drupal
