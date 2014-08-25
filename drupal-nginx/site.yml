@@ -4,11 +4,11 @@
   user: root
   # remote_user: user
   # sudo: yes
+  # removed wordpress
 
   roles:
     - common
     - mysql 
     - nginx
     - php-fpm
-    - wordpress
     - drupal
