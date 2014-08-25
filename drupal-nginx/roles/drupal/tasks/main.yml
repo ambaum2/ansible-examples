@@ -6,7 +6,7 @@
   shell: cd /srv/; rm -rf drupal; rm -rf aaomembers*;
   
 - name: Extract archive
-  command: chdir=/srv/ /bin/tar xvf drupal.tar.gz creates=/srv/drupal
+  command: chdir=/srv/ /bin/tar xvf drupal.tar.gz #creates=/srv/drupal
   
 - name: rename aaomembers extracted folder to drupal
   shell: find . -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} drupal  \; | head -1
