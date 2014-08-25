@@ -2,14 +2,20 @@
 - name: Download Drupal from pantheon download url
   command: chdir=/srv/ curl -o drupal.tar.gz "{{ drupal_code_download_url }}"
 
+- name: Download Drupal Database from Pantheon
+  command: chdir=/srv/ curl -o drupal_db.sql.gz "{{ drupal_db_download_url }}"
+
 - name: remove old drupal directories
   shell: cd /srv/; rm -rf drupal; rm -rf aaomembers*;
   
-- name: Extract archive
+- name: Extract code archive
   command: chdir=/srv/ /bin/tar xvf drupal.tar.gz #creates=/srv/drupal
-  
-- name: rename aaomembers extracted folder to drupal
+
+- name: rename code extracted folder to drupal
   shell: find /srv/ -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} /srv/drupal/  \; | head -1
+  
+- name: Extract database archive
+  command: chdir=/srv/ gunzip drupal_db.sql.gz #creates=/srv/drupal
 
 - name: Add group "drupal"
   group: name=drupal
@@ -22,6 +28,9 @@
   
 - name: Create drupal database user
   mysql_user: name={{ d7_db_user }} password={{ d7_db_password }} priv={{ d7_db_name }}.*:ALL host='localhost' state=present
+  
+- name: Copy drupal database   
+  mysql_db: name={{ d7_db_name }} state=import target=/srv/drupal_db.sql
   
 #lcl.settings.php is a pantheon thing since we are downloading from pantheon
 - name: Copy drupal config file
