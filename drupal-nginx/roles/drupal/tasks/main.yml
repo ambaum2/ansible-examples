@@ -22,6 +22,9 @@
 
 - name: output name test 3
   shell: find . -name 'aaomembers*' -exec sh -c "cat {} > {}.stdout" \;
+  
+- name: output name test 4
+  shell: ls | grep "aaomembers*"
 
 - name: echo my_new var
   shell: echo {{ my_new_var }}
