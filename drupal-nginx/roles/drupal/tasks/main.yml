@@ -10,3 +10,21 @@
   
 - name: rename aaomembers extracted folder to drupal
   shell: find . -maxdepth 1 -depth -type d -name 'aaomembers*' -exec mv {} drupal  \; | head -1
+
+- name: Add group "drupal"
+  group: name=drupal
+
+- name: Add user "drupal"
+  user: name=drupal group=drupal home=/srv/drupal/
+
+- name: Create drupal database
+  mysql_db: name={{ d7_db_name }} state=present
+  
+- name: Create drupal database user
+  mysql_user: name={{ d7_db_user }} password={{ d7_db_password }} priv={{ d7_db_name }}.*:ALL host='localhost' state=present
+  
+- name: Copy drupal config file
+  template: src=settings.php dest=/srv/drupal/sites/default/
+  
+- name: Change ownership of drupal installation
+  file: path=/srv/drupal/ owner=drupal group=drupal state=directory recurse=yes
