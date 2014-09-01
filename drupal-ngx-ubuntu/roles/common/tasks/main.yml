@@ -1,7 +1,12 @@
 ---
 #- name: Install libselinux-python
 #   apt: name=libselinux1 update_cache=yes state=present
-
+- name: install iptables persistent
+  apt: name=iptables-persistent state=present
+  
+- name: restart iptables
+  service: name=iptables-persistent state=started enabled=true
+  
 - name: Set up iptables rules
-  copy: src=iptables-save dest=/etc/sysconfig/iptables
+  copy: src=iptables-save dest=/etc/iptables/rules.v4
   notify: restart iptables
