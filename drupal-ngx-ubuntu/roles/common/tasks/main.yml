@@ -1,6 +1,6 @@
 ---
-- name: Install libselinux-python
-   apt: name=libselinux1 update_cache=yes state=present
+#- name: Install libselinux-python
+#   apt: name=libselinux1 update_cache=yes state=present
 
 - name: Set up iptables rules
   copy: src=iptables-save dest=/etc/sysconfig/iptables
