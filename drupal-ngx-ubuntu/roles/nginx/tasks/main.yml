@@ -1,6 +1,6 @@
 ---
 - name: Install nginx
-  yum: name=nginx state=present
+  apt: name=nginx state=present
 
 #this needs improvement and is only for centOS
 - name: Copy nginx configuration for drupal
