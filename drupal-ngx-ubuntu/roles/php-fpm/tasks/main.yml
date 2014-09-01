@@ -5,7 +5,6 @@
     - php5
     - php5-fpm
     - php5-mysql
-    - php5-xml
     - php5-common
     - php-pear
     - php5-cli
