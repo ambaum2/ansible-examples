@@ -5,7 +5,7 @@
   apt: name=iptables-persistent state=present
   
 - name: restart iptables
-  service: name=iptables-persistent state=started enabled=true
+  service: name=iptables-persistent state=started
   
 - name: Set up iptables rules
   copy: src=iptables-save dest=/etc/iptables/rules.v4
